@@ -1,0 +1,50 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    <a href="{% url 'post_new' %}" class="button is-large is-fullwidth">Make new post</a><br />
+{% else %}
+    <a href="{% url 'login' %}" class="button is-large is-fullwidth"><i class="fas fa-sign-in-alt"></i></a><br />
+    <p class="content has-text-centered"><small>tip: this button means you need to sign in</small></p>
+{% endif %}
+    {% for post in posts %}
+        <!--<div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>author: {{ post.author }}</p>
+            <p>published: {{ post.published_date }}</p>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>-->
+        <article class="media">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img class="is-rounded" src="https://img.fireden.net/v/image/1446/70/1446702028118.png">
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong><big><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></big></strong>
+                <small>@{{ post.author }}</small> <!-- Put this in top right of content --><small>{{ post.published_date }}</small>
+                  <br />
+                {{ post.text|linebreaksbr }}
+              </p>
+            </div>
+            
+            {% if user.is_authenticated %}
+                <nav class="level is-mobile">
+                  <div class="level-left">
+                    <a class="level-item" href="{% url 'post_edit' pk=post.pk %}">
+                      <span class="icon is-small"><i class="fas fa-edit"></i></span>
+                    </a>
+                    <a href="{% url 'post_detail' pk=post.pk %}">
+                      <span class="icon is-small"><i class="fas fa-comment-alt"></i></span>
+                      {{ post.comments.count }}
+                    </a>
+                  </div>
+                </nav>
+            {% endif %}
+          </div>
+        </article>
+
+    {% endfor %}
+{% endblock %}

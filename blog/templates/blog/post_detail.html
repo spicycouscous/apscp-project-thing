@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="card">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <figure class="image is-96x96">
+          <img class="is-rounded" src="https://img.fireden.net/v/image/1446/70/1446702028118.png">
+        </figure>
+      </div>
+      <div class="media-content">
+        <p class="title is-1">{{ post.title }}</p>
+        <p class="subtitle is-4">@{{ post.author }}</p>
+      </div>
+    </div>
+
+    <div class="content">
+        <h4>
+            {{ post.text }}
+        </h4>
+      <time><small>{{ post.published_date }}</small></time>
+    </div>
+    </div>
+    {% if user.is_authenticated %}
+        <footer class="card-footer">
+            <a href="{% url 'post_edit' pk=post.pk %}" class="card-footer-item">Edit</a>
+            <a href="{% url 'post_remove' pk=post.pk %}" class="card-footer-item">Delete</a>
+        </footer>
+    {% endif %}
+</div>
+<hr>
+<a class="button" href="{% url 'add_comment_to_post' pk=post.pk %}">Post comment</a>
+<hr>
+{% for comment in post.comments.all %}
+  <article class="media">
+    <figure class="media-left">
+      <p class="image is-64x64">
+        <img class="is-rounded" src="https://66.media.tumblr.com/050401d89fb90df2910b1b86d4957872/tumblr_piexz31J7l1ufzrtb_540.jpg">
+      </p>
+    </figure>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><big>@{{ comment.author }}</big>   </strong><small>{{ comment.created_date }}</small>
+            <br />
+          {{ comment.text|linebreaksbr }}
+        </p>
+      </div>
+    </div>
+  </article>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+{% endblock %}
+

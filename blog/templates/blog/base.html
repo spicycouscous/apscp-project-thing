@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Free credit</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <!--<script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"></script>-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma-modal-fx/dist/css/modal-fx.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="{% static 'js/main.js' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<section class="hero is-light">
+    <div class="hero-body">
+    <div class="container has-text-centered">
+        <a href="/"><h1 class="title rainbow text1">
+            My Epic Webstie
+        </h1></a>
+        <h2 class="subtitle">
+            i welcome you yes
+        </h2>
+        {% if user.is_authenticated %}
+            <p class="content has-text-centered">Signed in as: <strong>{{ user.username }}</strong>&nbsp;<a href="{% url 'logout' %}"><small><i>Logout?</i></small></a></p>
+        {% endif %}
+    </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</section>
+</body>
+</html>

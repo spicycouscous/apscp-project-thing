@@ -1,0 +1,60 @@
+h1 a, h2 a {
+    color: #C25100;
+}
+
+body {
+    margin-top: 15px;
+}
+
+.rainbow {
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 100px;
+    position: relative;
+    -webkit-animation: rainbow 5s infinite, text 3s 1;
+    font-family: 'Staatliches', cursive;
+    background: rgb(245,245,245);
+    margin-bottom: 20px;
+}
+
+.subtitle {
+    font-family: 'Staatliches', cursive;
+    font-size: 40px;
+}
+
+.minposttitle {
+    font-size: 30px;
+}
+
+/*
+.text1 {
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: text 2s 1;
+    background: rgb(245,245,245);
+} */
+
+
+@-webkit-keyframes rainbow{
+    0%{color: orange;}	
+    10%{color: purple;}	
+    20%{color: red;}
+    30%{color: CadetBlue;}
+    40%{color: yellow;}
+    50%{color: coral;}
+    60%{color: green;}
+    70%{color: cyan;}
+    80%{color: DeepPink;}
+    90%{color: DodgerBlue;}
+    100%{color: orange;}
+}
+
+@-webkit-keyframes text {
+    0% {
+        margin-bottom: -40px;
+    }
+
+    65% {
+        margin-bottom: -40px;
+    }
+}
